@@ -47,11 +47,10 @@ export default class {
   draw() {
     this.clear()
     this.grid.forEach((column, x) => {
-      const columnDiv = this.createColumn(x)
+      this.element.appendChild(this.createColumn(x))
       column.forEach((square, y) => {
-        columnDiv.appendChild(this.createSquare(x, y))
+        this.element.lastChild.appendChild(this.createSquare(x, y))
       })
-      this.element.appendChild(columnDiv)
     })
   }
 
