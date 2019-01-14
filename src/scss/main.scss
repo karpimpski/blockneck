@@ -1,0 +1,12 @@
+$bg: rgb(43, 43, 43);
+$text-color: white;
+
+body {
+  background-color: $bg
+}
+
+p {
+  font-family: sans-serif;
+  text-align: center;
+  color: $text-color
+}
