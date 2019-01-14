@@ -1,5 +1,8 @@
-$bg: rgb(43, 43, 43);
+$bg: white;
 $text-color: white;
+$border-width: 1px;
+$edge-width: $border-width * 2;
+$fill-color: red;
 
 body {
   background-color: $bg
@@ -9,4 +12,34 @@ p {
   font-family: sans-serif;
   text-align: center;
   color: $text-color
+}
+
+#grid {
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  border-left: $border-width solid black;
+}
+
+.column:last-child {
+  border-right: $border-width solid black;
+}
+
+.square:first-child {
+  border-top: $border-width solid black;
+}
+
+.square {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-bottom: $border-width solid black;
+}
+
+.square.filled {
+  background: $fill-color;
 }

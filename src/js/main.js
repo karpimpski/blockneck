@@ -1,6 +1,5 @@
 require('../scss/main.scss')
 
-import Chat from './chat.js'
+import Grid from './grid.js'
 
-const chat = new Chat()
-chat.say('hello, world')
+const grid = new Grid(10, 8)

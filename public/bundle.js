@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"body {\\n  background-color: #2b2b2b; }\\n\\np {\\n  font-family: sans-serif;\\n  text-align: center;\\n  color: white; }\\n\", \"\"]);\n\n\n\n//# sourceURL=webpack:///./src/scss/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"body {\\n  background-color: white; }\\n\\np {\\n  font-family: sans-serif;\\n  text-align: center;\\n  color: white; }\\n\\n#grid {\\n  display: flex;\\n  justify-content: center; }\\n\\n.column {\\n  display: flex;\\n  flex-direction: column;\\n  border-left: 1px solid black; }\\n\\n.column:last-child {\\n  border-right: 1px solid black; }\\n\\n.square:first-child {\\n  border-top: 1px solid black; }\\n\\n.square {\\n  width: 40px;\\n  height: 40px;\\n  background: white;\\n  border-bottom: 1px solid black; }\\n\\n.square.filled {\\n  background: red; }\\n\", \"\"]);\n\n\n\n//# sourceURL=webpack:///./src/scss/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js");
 
 /***/ }),
 
@@ -131,15 +131,15 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 
 /***/ }),
 
-/***/ "./src/js/chat.js":
+/***/ "./src/js/grid.js":
 /*!************************!*\
-  !*** ./src/js/chat.js ***!
+  !*** ./src/js/grid.js ***!
   \************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (class {\n  say(message) {\n    console.log(message);\n  }\n\n});\n\n//# sourceURL=webpack:///./src/js/chat.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _square__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./square */ \"./src/js/square.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (class {\n  constructor(w, h) {\n    this.w = w;\n    this.h = h;\n    this.element = document.getElementById('grid');\n    this.grid = this.createGrid(w, h);\n    this.fillShape([0, 2], [1, 1], [1, 2], [1, 3]);\n    this.draw();\n  }\n  /**\n   * Creates a 2-dimensional array filled with Squares, representing a grid.\n   */\n\n\n  createGrid(w, h) {\n    let result = [];\n\n    for (let column = 0; column < w; column++) {\n      result.push([]);\n\n      for (let row = 0; row < h; row++) {\n        result[column].push(new _square__WEBPACK_IMPORTED_MODULE_0__[\"default\"]());\n      }\n    }\n\n    return result;\n  }\n  /**\n   * Finds Square at given point in grid.\n   */\n\n\n  square(x, y) {\n    return this.grid[x][y];\n  }\n  /**\n   * Fills squares that match given coordinates.\n   * @param  {...[int, int]} coordinates - separate arrays of squares to fill.\n   */\n\n\n  fillShape(...coordinates) {\n    coordinates.forEach(c => {\n      this.square(c[0], c[1]).fill();\n    });\n  }\n  /**\n   * Draws the current grid to the DOM.\n   */\n\n\n  draw() {\n    this.clear();\n    this.grid.forEach((column, x) => {\n      const columnDiv = this.createColumn(x);\n      column.forEach((square, y) => {\n        columnDiv.appendChild(this.createSquare(x, y));\n      });\n      this.element.appendChild(columnDiv);\n    });\n  }\n\n  createColumn(x) {\n    const columnDiv = document.createElement('div');\n    columnDiv.className = 'column';\n    columnDiv.id = 'column_' + x;\n    return columnDiv;\n  }\n\n  createSquare(x, y) {\n    const squareDiv = document.createElement('div');\n    squareDiv.className = 'square';\n    squareDiv.id = 'row_' + y;\n    squareDiv.innerHTML = x;\n\n    if (this.square(x, y).filled) {\n      squareDiv.classList.add('filled');\n    }\n\n    return squareDiv;\n  }\n  /**\n   * Clears all contents in DOM #grid element.\n   */\n\n\n  clear() {\n    while (this.element.firstChild) this.element.removeChild(this.element.firstChild);\n  }\n\n});\n\n//# sourceURL=webpack:///./src/js/grid.js?");
 
 /***/ }),
 
@@ -151,7 +151,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _chat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chat.js */ \"./src/js/chat.js\");\n__webpack_require__(/*! ../scss/main.scss */ \"./src/scss/main.scss\");\n\n\nconst chat = new _chat_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nchat.say('hello, world');\n\n//# sourceURL=webpack:///./src/js/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _grid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./grid.js */ \"./src/js/grid.js\");\n__webpack_require__(/*! ../scss/main.scss */ \"./src/scss/main.scss\");\n\n\nconst grid = new _grid_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](10, 8);\n\n//# sourceURL=webpack:///./src/js/main.js?");
+
+/***/ }),
+
+/***/ "./src/js/square.js":
+/*!**************************!*\
+  !*** ./src/js/square.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (class {\n  constructor() {\n    this.filled = false;\n  }\n\n  fill() {\n    this.filled = true;\n  }\n\n  clear() {\n    this.filled = false;\n  }\n\n});\n\n//# sourceURL=webpack:///./src/js/square.js?");
 
 /***/ }),
 
