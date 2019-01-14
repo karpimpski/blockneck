@@ -1,3 +1,3 @@
-# webpack-skeleton
+# BlockNeck
 
-A bare-bones setup for a static website including ES6 modules and SCSS.
+A basic Tetris game made using the DOM, vanilla ES6, and SCSS.
